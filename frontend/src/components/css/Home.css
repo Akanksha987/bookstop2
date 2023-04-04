@@ -19,8 +19,7 @@
   padding-left: 5%;
 }
 .about-img img {
-  width: 420px;
-  padding: 10%;
+  width: 600px;
 }
 .about-text p {
   margin-left: 15rem;
@@ -45,5 +44,9 @@
 @media screen and (max-width: 992px) {
   .about-content {
     flex-direction: column;
+  }
+  .about-img img {
+    width: 350px;
+    /* padding: 1%; */
   }
 }
