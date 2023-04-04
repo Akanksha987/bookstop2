@@ -30,13 +30,17 @@ const Sell = () => {
             <input type="text" className="block" />
           </label>
           <label>
+            <h3>Contact Number</h3>
+            <input type="number" className="block" />
+          </label>
+          <label>
             <h3>Description(optional)</h3>
             <input type="text" className="description block" />
           </label>
         </div>
         <div>
           <h3>Photograph</h3>
-          <input type="file" id="imageHere" accept="image/*" />
+          <input type="file" id="imageHere" accept=".jpeg, .jpg,.png " />
         </div>
       </div>
       <div>Submit</div>

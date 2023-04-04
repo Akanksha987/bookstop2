@@ -1,9 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-
+const DB = process.env.DB;
 mongoose
-  .connect("mongodb://localhost:27017/BookStop", {
+  .connect(DB, {
     family: 4,
   })
   .then(() => {

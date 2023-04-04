@@ -82,6 +82,32 @@ h1 {
   font-style: bold;
   color: rgb(81, 71, 71);
 }
+
+/* Search function Styling */
+input {
+  background-color: beige;
+}
+.search-form {
+  width: 100%;
+  max-width: 680px;
+}
+.search-form-elem {
+  padding: 0.8rem 1.8rem;
+  border-radius: 3.8rem;
+  margin-top: 2vh;
+  background-color: beige;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.search-form-elem .form-control {
+  font-size: 1.8rem;
+  padding: 0.4rem;
+}
+.search-form-elem .form-control::placeholder {
+  opacity: 0.9;
+}
+
 @media screen and (max-width: 992px) {
   /* Landing page responsive styling */
   .landing {
