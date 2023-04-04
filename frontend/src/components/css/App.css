@@ -1,0 +1,108 @@
+/* Landing page styling */
+
+.landing {
+  background-color: #fbeee6;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+#cover {
+  width: 50%;
+}
+#landing-logo {
+  width: 25%;
+}
+#signup {
+  background-color: black;
+  padding: 2vh;
+  margin-top: 5vh;
+  color: white;
+  font-size: 1.5rem;
+  width: 20vh;
+  border-radius: 6vh;
+}
+p {
+  font-size: 1.5rem;
+}
+
+/* Login Page styling */
+
+.login-div {
+  background-color: #fbeee6;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+/* Cart page styling */
+.cart-div {
+  background-color: #fbeee6;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+.cart-temp {
+  display: flex;
+  flex-direction: row;
+  background-color: #fffcfb;
+  border-radius: 7px;
+  margin: 8%;
+  box-shadow: 3px 3px rgb(180, 168, 168);
+}
+/* 404 Page styling */
+.notfound-div {
+  display: flex;
+  flex-direction: row;
+}
+.notfound-content {
+  padding: 10%;
+  margin-top: 6%;
+}
+.page {
+  width: 85%;
+  height: 85%;
+  padding-right: 7%;
+}
+h1 {
+  font-size: 4rem;
+  font-size: 3rem;
+  font-style: bold;
+}
+.context {
+  font-size: 3rem;
+  font-style: bold;
+  color: rgb(81, 71, 71);
+}
+@media screen and (max-width: 992px) {
+  /* Landing page responsive styling */
+  .landing {
+    padding: 30%;
+  }
+  #cover {
+    width: 400px;
+  }
+  #landing-logo {
+    width: 400px;
+  }
+  p {
+    padding: 8%;
+    font-size: 1.2rem;
+  }
+  /* Cart page responsive styling */
+  .cart-temp {
+    flex-direction: column;
+  }
+  /* 404 Page styling */
+  .notfound-div {
+    flex-direction: column;
+  }
+}
