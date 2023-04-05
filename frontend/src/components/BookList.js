@@ -41,5 +41,4 @@ const BookList = () => {
     </section>
   );
 };
-
 export default BookList;

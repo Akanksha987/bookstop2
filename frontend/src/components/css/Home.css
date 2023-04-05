@@ -5,9 +5,9 @@
   position: absolute;
 }
 .about {
-  padding: 3rem 0;
+  /* padding: 3rem 0; */
   background-color: #fbeee6;
-  margin-top: 10rem;
+  /* margin-top: 10rem; */
   margin-left: 10rem;
 }
 .about-content {
@@ -20,6 +20,7 @@
 }
 .about-img img {
   width: 600px;
+  padding-right: 5%;
 }
 .about-text p {
   margin-left: 15rem;
@@ -41,12 +42,13 @@
   font-size: 1.8rem;
   font-weight: 300;
 }
+
 @media screen and (max-width: 992px) {
-  .about-content {
-    flex-direction: column;
-  }
   .about-img img {
-    width: 350px;
-    /* padding: 1%; */
+    width: 250px;
+    align-items: center;
+  }
+  .about-content {
+    text-align: center;
   }
 }

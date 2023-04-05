@@ -4,6 +4,7 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
+      {/* Input field */}
       <div>
         <h2>Signup</h2>
         <label>
@@ -17,10 +18,6 @@ const Signup = () => {
         <label>
           <h4>Password:</h4>
           <input type="text" />
-        </label>
-        <label>
-          <h4>Contact Number:</h4>
-          <input type="Number" />
         </label>
       </div>
       <button>Signup</button>

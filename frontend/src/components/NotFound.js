@@ -11,11 +11,13 @@ const NotFound = () => {
           We looked all over, but that page seems to havegotten away from us.
           Try one of these links to get back on track.
           <br />
+          {/* Link text with the page */}
           <Link to="/book">
             Go Back <AiOutlineArrowRight size={22} />
           </Link>
         </p>
       </div>
+      {/* Image division */}
       <div>
         <img src={page} alt="404Page" className="page" />
       </div>
