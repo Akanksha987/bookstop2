@@ -13,7 +13,7 @@ const SearchForm = () => {
     e.preventDefault();
     let tempSearchTerm = searchText.current.value.trim();
     if (tempSearchTerm.replace(/[^\w\s]/gi, "").length === 0) {
-      setSearchTerm("the lost world");
+      setSearchTerm("");
       setResultTitle("Please Enter Something ...");
     } else {
       setSearchTerm(searchText.current.value);

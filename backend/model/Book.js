@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bookSchema = new mongoose.Schema({
-  book_name: {
+  bookname: {
     type: String,
     required: true,
   },
@@ -13,6 +13,12 @@ const bookSchema = new mongoose.Schema({
     required: true,
     maxlength: 4,
     minlength: 4,
+  },
+  contact: {
+    type: Number,
+    required: true,
+    minlength: 10,
+    maxlength: 10,
   },
   year: {
     type: Number,
