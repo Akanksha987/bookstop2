@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import Sell from "./components/Sell";
 import BookList from "./components/BookList";
 import { Auth0Provider } from "@auth0/auth0-react";
+import BookDetails from "./components/BookDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/sell" element={<Sell />} />
           <Route path="/book" element={<BookList />} />
+          <Route path="/book/:id" element={<BookDetails />} />
         </Routes>
       </Auth0Provider>
     </div>
