@@ -4,7 +4,10 @@ import "./css/Navbar.css";
 import logoImg from "../images/B.png";
 import books from "../images/cover.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Navbar = () => {
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleNavbar = () => setToggleMenu(!toggleMenu);
   const handleClick = (e) => {
@@ -54,32 +57,41 @@ const Navbar = () => {
               <button
                 id="active"
                 onClick={handleClick}
-                className="navigate-around-buttons buttons"
+                className="navigate-around-buttons"
               >
                 Home
               </button>
             </Link>
             <Link to="/book">
-              <button
-                onClick={handleClick}
-                className="navigate-around-buttons buttons"
-              >
+              <button onClick={handleClick} className="navigate-around-buttons">
                 Books
               </button>
             </Link>
             <Link to="/cart">
-              <button
-                onClick={handleClick}
-                className="navigate-around-buttons buttons"
-              >
+              <button onClick={handleClick} className="navigate-around-buttons">
                 Cart
               </button>
             </Link>
             <Link to="/sell">
-              <button className="navigate-around-buttons buttons">
-                Add Book
-              </button>
+              <button className="navigate-around-buttons">Add Book</button>
             </Link>
+            {isAuthenticated ? (
+              <>
+                <button
+                  onClick={logout}
+                  className="navigate-around-buttons buttons"
+                >
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={loginWithRedirect}
+                className="navigate-around-buttons buttons"
+              >
+                Sign up
+              </button>
+            )}
           </div>
 
           {/* Dision for image of books */}

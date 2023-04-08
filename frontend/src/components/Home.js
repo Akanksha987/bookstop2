@@ -3,7 +3,10 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import "./css/Home.css";
 import aboutImg from "../images/6897212-removebg-preview.png";
+import { useAuth0 } from "@auth0/auth0-react";
 const Home = () => {
+  const { user } = useAuth0();
+  console.log(user);
   return (
     <div className="home-div">
       {/* Inserting navbar file */}
@@ -17,7 +20,7 @@ const Home = () => {
         </p>
       </div>
       {/* About us division */}
-      <div className="about-content about container">
+      <div className="about-content">
         <div className="about-img">
           <img src={aboutImg} alt="" />
         </div>
