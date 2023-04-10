@@ -1,4 +1,28 @@
 const Book = require("../model/Book");
+const addBook = async (req, res) => {
+  const { bookname, author, edition, contact, year, course, photograph } =
+    req.body;
+  let books;
+  try {
+    books = new Book({
+      bookname,
+      author,
+      edition,
+      contact,
+      year,
+      course,
+      photograph,
+    });
+    await books.save();
+  } catch (err) {
+    console.log(err);
+  }
+  if (!books) {
+    return res.status(500).json({ msg: "Unable to add" });
+  }
+  return res.status(201).json({ books });
+};
+
 const getAllBooks = async (req, res) => {
   let books;
   try {
@@ -13,43 +37,18 @@ const getAllBooks = async (req, res) => {
 };
 const getById = async (req, res) => {
   const id = req.params.id;
-  let book;
+  let books;
   try {
-    book = await Book.findByID(id);
+    books = await Book.findByID(id);
   } catch (err) {
     console.log(err);
   }
-  if (!book) {
+  if (!books) {
     return res.status(404).json({ msg: "No book found" });
   }
-  return res.status(200).json({ book });
+  return res.status(200).json({ books });
 };
 
-const addBook = async (req, res) => {
-  const { bookname, author, course, contact, edition, year, cover_id } =
-    req.body;
-  let book;
-  try {
-    book = new Book({
-      bookname,
-      author,
-      course,
-      edition,
-      contact,
-      year,
-      cover_id,
-    });
-    await book.save();
-  } catch (err) {
-    console.log(err);
-  }
-
-  if (!book) {
-    return res.status(500).json({ message: "Unable To Add" });
-  }
-  return res.status(201).json({ book });
-};
-
+exports.addBook = addBook;
 exports.getAllBooks = getAllBooks;
 exports.getById = getById;
-exports.addBook = addBook;

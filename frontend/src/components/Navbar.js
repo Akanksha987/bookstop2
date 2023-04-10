@@ -53,7 +53,7 @@ const Navbar = () => {
           }
         >
           <div className="floating-nav">
-            <Link to="/home">
+            <Link to="/">
               <button
                 id="active"
                 onClick={handleClick}

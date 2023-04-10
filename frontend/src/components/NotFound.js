@@ -6,9 +6,9 @@ const NotFound = () => {
   return (
     <div className="notfound-div">
       <div className="notfound-content">
-        <h1>Ruh roh!</h1>
+        <h1>Ohhhh!!!!!</h1>
         <p className="context">
-          We looked all over, but that page seems to havegotten away from us.
+          We looked all over, but that page seems to have gotten away from us.
           Try one of these links to get back on track.
           <br />
           {/* Link text with the page */}
