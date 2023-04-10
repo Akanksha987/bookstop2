@@ -12,8 +12,8 @@ function App() {
   return (
     <div>
       <Auth0Provider
-        clientId="LY950lpDF68jgnJEGIWUtUaMunlpTeFs"
-        domain="dev-kce2a8b1cexzb43y.us.auth0.com"
+        clientId={process.env.REACT_APP_CLIENT_ID}
+        domain={process.env.REACT_APP_DOMAIN}
         authorizationParams={{
           redirect_uri: window.location.origin,
         }}
