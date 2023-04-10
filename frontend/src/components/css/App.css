@@ -10,19 +10,22 @@
   position: absolute;
 }
 #cover {
-  width: 50%;
+  width: 30%;
+  margin-top: 7%;
 }
 #landing-logo {
   width: 25%;
 }
-#signup {
+#explore {
   background-color: black;
-  padding: 2vh;
-  margin-top: 5vh;
-  color: white;
+  padding: 2vh 8vh;
+  margin-top: 3%;
   font-size: 1.5rem;
-  width: 20vh;
   border-radius: 6vh;
+}
+.explore {
+  margin-top: 25%;
+  color: white;
 }
 p {
   font-size: 1.5rem;
@@ -159,10 +162,11 @@ input {
 @media screen and (max-width: 992px) {
   /* Landing page responsive styling */
   .landing {
-    padding: 30%;
+    padding: 19%;
   }
   #cover {
     width: 400px;
+    margin-top: 1px;
   }
   #landing-logo {
     width: 400px;

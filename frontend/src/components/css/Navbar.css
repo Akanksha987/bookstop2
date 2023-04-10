@@ -17,7 +17,8 @@
 /* Toogle Styling */
 .navbar-toggler-btn {
   transition: var(--transition);
-  z-index: 11;
+  z-index: 1;
+  padding-left: 35%;
 }
 .navbar-collapse {
   position: fixed;
@@ -29,7 +30,7 @@
   width: 280px;
   display: flex;
   padding: 10rem 3rem 0 3rem;
-  transform: translatex(100%);
+  transform: translateX(100%);
   transition: var(--transition);
 }
 .show-navbar-collapse {
@@ -63,6 +64,14 @@
   background-color: black;
   color: white;
 }
+#image-div {
+  width: 80%;
+  margin-left: 3%;
+}
+.buttons {
+  width: 8vw;
+  height: 5.5vh;
+}
 
 /* Responsive Styling */
 @media screen and (min-width: 992px) {
@@ -77,7 +86,7 @@
   }
   .navbar-toggler-btn {
     display: none;
-    margin-left: 9%;
+    margin-left: 5%;
   }
   .nav-item {
     margin-bottom: 0;
