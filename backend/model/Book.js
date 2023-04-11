@@ -30,9 +30,9 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
   photograph: {
-    type: String,
+    type: Object,
     required: true,
   },
 });
-const Book = mongoose.model("Book", bookSchema);
-module.exports = Book;
+const Product = mongoose.model("Product", bookSchema);
+module.exports = Product;

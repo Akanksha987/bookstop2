@@ -28,7 +28,7 @@ const Sell = () => {
           <input type="number" className="block" />
           <br />
         </div>
-        <div id="image">
+        <div id="image" onChange={convertToBase64}>
           <h3>Photograph</h3>
           <div
             className="photograph"

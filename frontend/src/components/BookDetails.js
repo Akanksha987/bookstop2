@@ -5,6 +5,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const URL = "https://openlibrary.org/works/";
+// const URI ="http://localhost:8000/products"
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const BookDetails = () => {
   useEffect(() => {
     async function getBookDetails() {
       try {
+        // const res=await fetch(`${URI}${id}.json`)
         const response = await fetch(`${URL}${id}.json`);
         const data = await response.json();
         console.log(data);
