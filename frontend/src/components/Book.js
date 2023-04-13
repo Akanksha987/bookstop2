@@ -1,12 +1,16 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import "./css/BookList.css";
 
 const Book = (book) => {
-  const handleClick = () => {};
-
+  const { user } = useAuth0();
+  const handleClick = () => {
+    console.log(book);
+  };
+  console.log(user);
   return (
     <div id="main-content">
-      <div className="book-item flex flex-column flex-sb" onClick={handleClick}>
+      <div className="book-item flex flex-column flex-sb">
         <div className="book-item-img">
           <img src={book.cover_img} alt="cover" />
         </div>
@@ -20,7 +24,7 @@ const Book = (book) => {
             <span className="text-capitalize fw-7">Author: </span>
             <span>{book.author.join(", ")}</span>
           </div>
-          <button key={book.id} className="cart-button">
+          <button onClick={handleClick} className="cart-button">
             Add to Cart
           </button>
         </div>

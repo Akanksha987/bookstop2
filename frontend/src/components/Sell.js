@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import "./css/Sell.css";
 
 const Sell = () => {
-  const handleFormSubmit = () => {};
+  const [fileInputState, setFileInputState] = useState("");
+  const [previewSource, setPreviewSource] = useState("");
+  const handleFormSubmit = () => {
+    const file = e.target.files[0];
+    previewFile(file);
+    setFileInputState(e.target.value);
+  };
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+      
+    };
+  };
   return (
     <div className="content">
       <Navbar />
@@ -28,13 +42,18 @@ const Sell = () => {
           <input type="number" className="block" />
           <br />
         </div>
-        <div id="image" onChange={convertToBase64}>
+        <div id="image">
           <h3>Photograph</h3>
           <div
             className="photograph"
             onClick={() => document.getElementById("imageHere").click()}
           ></div>
-          <input type="file" id="imageHere" accept=".jpeg, .jpg,.png " />
+          <input
+            type="file"
+            id="imageHere"
+            accept=".jpeg, .jpg, .png "
+            onClick={fileInputState}
+          />
         </div>
       </div>
       <button

@@ -11,7 +11,7 @@ app.use(express.json());
 app.get("/products", (req, res) => {
   res.send(products);
 });
-
+app.use("/api/products", productRoute);
 mongoose
   .connect(DB, {
     family: 4,

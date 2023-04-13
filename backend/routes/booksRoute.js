@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   const { bookname, author, edition, contact, year, course, photograph } =
     req.body;
   try {
-    if (image) {
+    if (photograph) {
       const uploadRes = await cloudinary.uploader.upload(photograph, {
         upload_preset: "bookStop",
       });
@@ -41,5 +41,4 @@ router.get("/", async (req, res) => {
     re.status(500).send(error);
   }
 });
-
 module.exports = router;
