@@ -5,7 +5,7 @@ import SearchForm from "./SearchForm";
 import Navbar from "./Navbar";
 
 const BookList = () => {
-  const { books, resultTitle } = useGlobalContext();
+  const { books } = useGlobalContext();
   const booksWithCovers = books.map((singleBook) => {
     return {
       ...singleBook,
@@ -24,7 +24,7 @@ const BookList = () => {
       <div className="container">
         <div className="filter-section">
           <div>
-            <h2>{resultTitle}</h2>
+            <h2>Search the book of your need.....</h2>
           </div>
           {/* Search bar to search the name of the book */}
           <div>

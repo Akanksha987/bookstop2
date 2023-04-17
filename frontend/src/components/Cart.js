@@ -1,13 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar";
 import "./css/App.css";
-const Cart = () => {
+const Cart = ({ cartItems }) => {
   return (
     <div className="cart-div">
       <Navbar />
       <div className="cart-temp">
-        <div className="image-div">qwertyui</div>
-        <div className="details-div">asdfghjk</div>
+       
       </div>
     </div>
   );

@@ -1,44 +1,44 @@
 const express = require("express");
 const router = express.Router();
+const Book = require("../model/Book");
 const cloudinary = require("../utils/cloudinary");
 
 // Create
-router.post("/", async (req, res) => {
-  const { bookname, author, edition, contact, year, course, photograph } =
-    req.body;
+router.post("/product", async (req, res) => {
+  const { bookname, author, edition, contact, year, course, image } = req.body;
   try {
-    if (photograph) {
-      const uploadRes = await cloudinary.uploader.upload(photograph, {
-        upload_preset: "bookStop",
+    let result = null;
+    if (image) {
+      result = await cloudinary.uploader.upload(image, {
+        folder: "Book_Stop",
+        width: 500,
       });
-      if (uploadRes) {
-        const product = new Books({
-          bookname,
-          author,
-          edition,
-          contact,
-          year,
-          course,
-          photograph: uploadRes,
-        });
-        const savedProduct = await product.save();
-
-        req.status(200).send(savedProduct);
-      }
     }
+    const product = await Book.create({
+      bookname,
+      author,
+      edition,
+      contact,
+      year,
+      course,
+      image: result ? result.secure_url : "",
+    });
+
+    res.status(200).json(product);
   } catch (error) {
-    console.log(error);
-    re.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
-router.get("/", async (req, res) => {
+// router.get("/product", async (req, res) => {});
+
+router.get("/product", async (req, res) => {
   try {
-    const products = await Books.find();
-    res.status(200).send(products);
+    const products = await Book.find(req.query);
+    res.status(200).json(products);
   } catch (error) {
     console.log(error);
-    re.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 module.exports = router;

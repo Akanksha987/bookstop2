@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useCallback } from "react";
-const URL = "http://openlibrary.org/search.json?title=";
-
+// const URL = "http://openlibrary.org/search.json?title=";
+const URL="http://localhost:3004/api/product/"
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setBooks] = useState([]);
-  const [resultTitle, setResultTitle] = useState("");
 
   const fetchBooks = useCallback(async () => {
     try {
@@ -18,34 +17,32 @@ const AppProvider = ({ children }) => {
       if (docs) {
         const newBooks = docs.slice(0, 20).map((bookSingle) => {
           const {
-            key,
-            author_name,
-            cover_i,
-            edition_count,
-            first_publish_year,
-            title,
+            _id,
+            author,
+            edition,
+            bookname,
+            contact,
+            year,
+            // key,
+            // author_name,
+            // cover_i,
+            // edition_count,
+            // first_publish_year,
+            // title,
           } = bookSingle;
 
           return {
-            id: key,
-            author: author_name,
-            cover_id: cover_i,
-            edition_count: edition_count,
-            first_publish_year: first_publish_year,
-            title: title,
+            id: _id,
+            author: author,
+            // cover_id: cover_i,
+            edition_count: edition,
+            first_publish_year: year,
+            title: bookname,
+            contact:contact,
           };
         });
 
         setBooks(newBooks);
-
-        if (newBooks.length > 1) {
-          setResultTitle("Filter");
-        } else {
-          setResultTitle("No Search Result Found!");
-        }
-      } else {
-        setBooks([]);
-        setResultTitle("No Search Result Found!");
       }
     } catch (error) {
       console.log(error);
@@ -61,8 +58,6 @@ const AppProvider = ({ children }) => {
       value={{
         books,
         setSearchTerm,
-        resultTitle,
-        setResultTitle,
       }}
     >
       {children}

@@ -25,7 +25,7 @@ const Home = () => {
           <img src={aboutImg} alt="" />
         </div>
         <p className="about-text">
-          <h2 className="about-title">About BookStop</h2>
+          <h2>About BookStop</h2>
           BookStop is a website which is made for the college students who have
           to buy academic books and are useless after semester or the people
           having the similar book doesn't require any more. This website will

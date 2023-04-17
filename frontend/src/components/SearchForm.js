@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "./context";
 
 const SearchForm = () => {
-  const { setSearchTerm, setResultTitle } = useGlobalContext();
+  const { setSearchTerm } = useGlobalContext();
   const searchText = useRef("");
   const navigate = useNavigate();
 
@@ -14,7 +14,6 @@ const SearchForm = () => {
     let tempSearchTerm = searchText.current.value.trim();
     if (tempSearchTerm.replace(/[^\w\s]/gi, "").length === 0) {
       setSearchTerm("");
-      setResultTitle("Please Enter Something ...");
     } else {
       setSearchTerm(searchText.current.value);
     }
