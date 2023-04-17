@@ -1,21 +1,20 @@
-import { useGlobalContext } from "./context";
-import Book from "./Book";
-import coverImg from "../images/cover_not_found.jpg";
+import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import Navbar from "./Navbar";
+const URL = "http://localhost:3004/api/product";
 
 const BookList = () => {
-  const { books } = useGlobalContext();
-  const booksWithCovers = books.map((singleBook) => {
-    return {
-      ...singleBook,
-      // removing /works/ to get only id
-      id: singleBook.id.replace("/works/", ""),
-      cover_img: singleBook.cover_id
-        ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg`
-        : coverImg,
-    };
-  });
+  const handleClick = () => {};
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  useEffect(() => {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFilteredBooks(data);
+      });
+  }, [setFilteredBooks]);
+
   return (
     <section className="booklist">
       <div>
@@ -33,9 +32,36 @@ const BookList = () => {
         </div>
         <div className="booklist-content grid">
           {/* Indivisual Book element being displayed */}
-          {booksWithCovers.slice(0, 30).map((item, index) => {
-            return <Book id key={index} {...item} />;
-          })}
+
+          <div id="main-content">
+            {filteredBooks.length > 0 && (
+              <ul className="book-list">
+                {filteredBooks.map((filtered) => (
+                  <li key={filtered.id}>
+                    <div className="book-item flex flex-column flex-sb">
+                      <div className="book-item-img">
+                        <img src={filtered.image} alt="cover" />
+                      </div>
+                      <div className="book-item-info text-center">
+                        {/* <Link to={`/book/${book.id}`} {...book}> */}
+                        <div className="book-item-info-item title fw-7 fs-18">
+                          <span>{filtered.bookname}</span>
+                        </div>
+                        {/* </Link> */}
+                        <div className="book-item-info-item author fs-15">
+                          <span className="text-capitalize fw-7">Author: </span>
+                          <span>{filtered.author}</span>
+                        </div>
+                        <button onClick={handleClick} className="cart-button">
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </section>

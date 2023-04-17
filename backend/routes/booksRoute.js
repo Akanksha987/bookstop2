@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../model/Book");
 const cloudinary = require("../utils/cloudinary");
+const mongoose = require("mongoose");
 
 // Create
 router.post("/product", async (req, res) => {
@@ -30,8 +31,6 @@ router.post("/product", async (req, res) => {
   }
 });
 
-// router.get("/product", async (req, res) => {});
-
 router.get("/product", async (req, res) => {
   try {
     const products = await Book.find(req.query);
@@ -41,4 +40,21 @@ router.get("/product", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.get("/product/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such category!, Sorry :(" });
+  }
+
+  const products = await Book.findById(id);
+
+  if (!products) {
+    return res.status(404).json({ error: "No such category, Sorry :(" });
+  }
+
+  res.status(200).json(products);
+});
+
 module.exports = router;
