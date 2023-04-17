@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 const cartSchema = new mongoose.Schema({
+  unique_email: {
+    type: String,
+    required: true,
+  },
   bookname: {
     type: String,
     required: true,

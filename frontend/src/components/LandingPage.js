@@ -12,7 +12,7 @@ const LandingPage = () => {
       <img src={logoImg} alt="site logo" id="landing-logo" />
       {/* Explore button */}
       <button id="explore">
-        <Link to="/" className="explore">
+        <Link to="/home" className="explore">
           Explore
         </Link>
       </button>

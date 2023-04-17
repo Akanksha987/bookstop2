@@ -21,8 +21,8 @@ function App() {
         {/* routes for the pages */}
         <Routes>
           <Route path="*" element={<NotFound />} />
-          <Route path="/home" element={<LandingPage />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/sell" element={<Sell />} />
           <Route path="/book" element={<BookList />} />

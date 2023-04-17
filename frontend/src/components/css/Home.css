@@ -15,10 +15,6 @@
   flex-direction: row;
   margin: 5%;
 }
-.about-title {
-  margin: 1%;
-  padding-left: 5%;
-}
 .about-img img {
   width: 600px;
   padding-right: 10%;
