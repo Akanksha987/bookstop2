@@ -1,26 +1,31 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "./context";
+const URL = "http://localhost:3004/api/product";
 
 const SearchForm = () => {
-  const { setSearchTerm } = useGlobalContext();
-  const searchText = useRef("");
+  const [searchText, setSearchText] = useState("");
+  const [books, setBooks] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => searchText.current.focus(), []);
+  useEffect(() => {
+    fetch(URL)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setBooks(data);
+      });
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let tempSearchTerm = searchText.current.value.trim();
-    if (tempSearchTerm.replace(/[^\w\s]/gi, "").length === 0) {
-      setSearchTerm("");
-    } else {
-      setSearchTerm(searchText.current.value);
-    }
-
+    // console.log(books);
+    const filtered = books.filter((book) => {
+      return book.bookname.toLowerCase().includes(searchText);
+    });
+    console.log(filtered);
     navigate("/book");
   };
-
   return (
     <div className="search-form">
       <form className="search-form" onSubmit={handleSubmit}>
@@ -28,9 +33,10 @@ const SearchForm = () => {
           {/* Input field of search bar */}
           <input
             type="text"
+            value={searchText}
             className="form-control"
             placeholder="Search your book..."
-            ref={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
           {/* Search icon button */}
           <button type="submit" className="flex flex-c" onClick={handleSubmit}>
