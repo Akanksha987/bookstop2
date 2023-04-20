@@ -3,9 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
-import { v4 as uuidv4 } from "uuid";
 import { FaSearch } from "react-icons/fa";
-const URL = "http://localhost:3004/api/product";
+// const URL = "http://localhost:3004/api/product";
 
 const BookList = () => {
   const [searchText, setSearchText] = useState("");
@@ -13,15 +12,11 @@ const BookList = () => {
   const navigate = useNavigate();
   const { user } = useAuth0();
 
-  // const [values, setValues] = useState({
-  //   given_name: user.name,
-  //   email: user.email,
-  // });
   let values = {};
   if (user) values = { given_name: user.name, email: user.email };
   const handleClick = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3004/api/cart", {
+    const response = await fetch(process.env.REACT_APP_CART, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(values),
@@ -33,10 +28,23 @@ const BookList = () => {
     } else {
       console.log(json);
     }
+    // e.preventDefault();
+    // const response = await fetch("http://localhost:3004/api/cart", {
+    //   method: "PUT",
+    //   headers: { "Content-type": "application/json" },
+    //   body: JSON.stringify(values),
+    // });
+    // const json = await response.json();
+    // console.log(values);
+    // if (response.ok) {
+    //   console.log(json);
+    // } else {
+    //   console.log(json);
+    // }
   };
 
   useEffect(() => {
-    fetch(URL)
+    fetch(process.env.REACT_APP_PRODUCT_API)
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
