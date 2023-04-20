@@ -4,22 +4,37 @@
   background-color: #fbeee6;
 }
 .booklist-content {
-  gap: 5vh;
   width: 100%;
-  /* position: sticky; */
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto auto;
   align-items: center;
   justify-content: space-evenly;
-  margin: 13vh auto;
   overflow-x: hidden;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
-
-#main-content {
+.booklist-content.grid #main-content {
   height: 75vh;
   width: 25vw;
   margin-bottom: 17%;
+}
+.book-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 5vh;
+  margin: 13vh auto;
+}
+/* Scroll bar styling */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #fbeee6;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fbeee6;
+  border-radius: 10px;
 }
 
 #indivisual-book {
@@ -32,7 +47,6 @@
   height: 100%;
   border-radius: 4px;
   width: 19vw;
-  /* border: solid black 2px; */
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
 }
 
@@ -43,8 +57,6 @@
   width: 210px;
   height: 35vh;
   align-items: center;
-  /* margin-right: auto; */
-  /* margin-left: auto; */
 }
 .book-item-info {
   margin-top: 2rem;
@@ -67,23 +79,10 @@
 }
 
 /* Filter options CSS */
-.filter-options {
-  padding: 0.8rem 1.8rem;
-  border-radius: 0.5rem;
-  margin-top: 2vh;
-  align-self: center;
-}
 
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
   display: none;
-}
-
-.filters {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
 }
 
 .cart-button {
@@ -113,13 +112,14 @@ input::-webkit-outer-spin-button {
 @media screen and (max-width: 992px) {
   .booklist-content {
     flex-direction: column;
+    margin-left: 10%;
   }
   #main-content {
     height: 70vh;
     width: 70vw;
   }
   .book-item {
-    width: 70vw;
+    width: 40vw;
   }
   .book-item-img {
     width: 50vw;
@@ -129,8 +129,35 @@ input::-webkit-outer-spin-button {
     width: 50vw;
     margin-right: 5%;
   }
+  .book-list {
+    grid-template-columns: auto;
+    gap: 5vh;
+    margin: 13vh auto;
+  }
+  .book-item-img img {
+    margin-left: 25%;
+    /* margin-left: auto; */
+    width: 175px;
+    height: 35vh;
+    align-content: center;
+    justify-content: center;
+  }
   .cart-button {
-    width: 50vw;
+    width: 25vw;
+    margin: 5%;
+  }
+}
+@media screen and (max-width: 662px) {
+  .book-item {
+    width: 70vw;
+  }
+  .book-item-img img {
+    margin: auto;
+    width: 170px;
+    height: 30vh;
+  }
+  .cart-button {
+    width: 40vw;
     margin: 5%;
   }
 }

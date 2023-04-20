@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import "./css/App.css";
+import CoverNotFound from "../images/cover_not_found.jpg";
+import { v4 as uuidv4 } from "uuid";
 const Cart = ({ cartItems }) => {
+  const [books, setBooks] = useState([]);
+  const handleClick = () => {};
+  console.log(uuidv4());
   return (
     <div className="cart-div">
       <Navbar />
-      <div className="cart-temp">
-       
-      </div>
+      <form className="cart-temp" onClick={handleClick}>
+        <div className="image-div">
+          {/* <img src={CoverNotFound} alt="image" />
+          <h3>Bookname</h3>
+          <h4>Author</h4>
+          <h4>Contact</h4> */}
+          {books.map((filtered) => {
+            <img src={filtered.image} alt="image" />;
+            <h3>{filtered.bookname}</h3>;
+            <h4>{filtered.author}</h4>;
+            <h4>{filtered.contact}</h4>;
+          })}
+        </div>
+      </form>
     </div>
   );
 };

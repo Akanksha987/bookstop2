@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const BookRoute = require("./routes/booksRoute");
+const CartRoute = require("./routes/cartRoute");
 const app = express();
 const DB = process.env.DB;
 const cors = require("cors");
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors());
 
 app.use("/api", BookRoute);
+app.use("/api", CartRoute);
 mongoose
   .connect(DB, {
     family: 4,

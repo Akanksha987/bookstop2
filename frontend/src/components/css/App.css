@@ -55,11 +55,23 @@ p {
 }
 .cart-temp {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 90%;
+  width: 19%;
   background-color: #fffcfb;
   border-radius: 7px;
   margin: 8%;
-  box-shadow: 3px 3px rgb(180, 168, 168);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
+}
+.image-div {
+  width: 45%;
+  height: 25%;
+  margin: 10% 25%;
+  align-content: center;
+  justify-content: center;
+}
+.cart-temp:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 /* 404 Page styling */
 .notfound-div {

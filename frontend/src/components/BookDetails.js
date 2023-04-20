@@ -18,9 +18,10 @@ const BookDetails = () => {
         console.log(data);
 
         if (data) {
-          const { bookname,image } = data;
+          const { bookname, image } = data;
           const newBook = {
-            
+            bookname,
+            image,
           };
           setBook(newBook);
         } else {
