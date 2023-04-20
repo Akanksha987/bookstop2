@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import Navbar from "./Navbar";
-const URL = "http://localhost:3004/api/product";
+const URL = process.env.REACT_APP_PRODUCT;
 
 const BookList = () => {
   const handleClick = () => {};
