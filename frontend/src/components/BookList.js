@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
 import { v4 as uuidv4 } from "uuid";
 import { FaSearch } from "react-icons/fa";
-const URL = "http://localhost:3004/api/product";
 
 const BookList = () => {
   const [searchText, setSearchText] = useState("");

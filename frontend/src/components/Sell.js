@@ -18,7 +18,7 @@ const Sell = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(JSON.stringify(values));
-    const response = await fetch("http://localhost:3004/api/product", {
+    const response = await fetch(process.env.REACT_APP_PRODUCT_API, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(values),

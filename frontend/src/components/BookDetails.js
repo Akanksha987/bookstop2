@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:3004/api/product/";
+const URL = process.env.REACT_APP_PRODUCT_API;
 
 const BookDetails = () => {
   const { id } = useParams();
