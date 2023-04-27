@@ -18,7 +18,6 @@
 .navbar-toggler-btn {
   transition: var(--transition);
   z-index: 1;
-  padding-left: 35%;
 }
 .navbar-collapse {
   position: fixed;
@@ -86,7 +85,6 @@
   }
   .navbar-toggler-btn {
     display: none;
-    margin-left: 5%;
   }
   .nav-item {
     margin-bottom: 0;
@@ -119,5 +117,8 @@
     flex-direction: column;
     margin-top: 45%;
     margin-left: 5%;
+  }
+  .brand-and-toggler {
+    width: 100%;
   }
 }

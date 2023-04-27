@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
-import { v4 as uuidv4 } from "uuid";
 import { FaSearch } from "react-icons/fa";
 
 const BookList = () => {
@@ -28,19 +27,6 @@ const BookList = () => {
     } else {
       console.log(json);
     }
-    // e.preventDefault();
-    // const response = await fetch("http://localhost:3004/api/cart", {
-    //   method: "PUT",
-    //   headers: { "Content-type": "application/json" },
-    //   body: JSON.stringify(values),
-    // });
-    // const json = await response.json();
-    // console.log(values);
-    // if (response.ok) {
-    //   console.log(json);
-    // } else {
-    //   console.log(json);
-    // }
   };
 
   useEffect(() => {
@@ -67,32 +53,29 @@ const BookList = () => {
       </div>
       <div className="container">
         <div className="filter-section">
-          <div>
-            <h2>Search the book of your need.....</h2>
-          </div>
+          <h2>Search the book of your need.....</h2>
           {/* Search bar to search the name of the book */}
-          <div>
-            <form className="search-form" onSubmit={handleSubmit}>
-              <div className="search-form-elem flex flex-sb">
-                {/* Input field of search bar */}
-                <input
-                  type="text"
-                  value={searchText}
-                  className="form-control"
-                  placeholder="Search your book..."
-                  onChange={(e) => setSearchText(e.target.value)}
-                />
-                {/* Search icon button */}
-                <button
-                  type="submit"
-                  className="flex flex-c"
-                  onClick={handleSubmit}
-                >
-                  <FaSearch className="text-black" size={25} />
-                </button>
-              </div>
-            </form>
-          </div>
+          <form className="search-form" onSubmit={handleSubmit}>
+            <div className="search-form-elem flex flex-sb">
+              {/* Input field of search bar */}
+              
+              <input
+                type="text"
+                value={searchText}
+                className="form-control"
+                placeholder="Search your book..."
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              {/* Search icon button */}
+              <button
+                type="submit"
+                className="flex flex-c"
+                onClick={handleSubmit}
+              >
+                <FaSearch className="text-black" size={25} />
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div className="booklist-content grid">

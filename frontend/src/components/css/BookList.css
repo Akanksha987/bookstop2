@@ -4,7 +4,7 @@
   background-color: #fbeee6;
 }
 .booklist-content {
-  width: 100%;
+  /* width: 100%; */
   display: grid;
   grid-template-columns: auto auto auto;
   align-items: center;
@@ -52,6 +52,9 @@
 
 .book-item:hover {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.book-item-img {
+  padding: 10%;
 }
 .book-item-img img {
   width: 210px;
@@ -103,7 +106,7 @@ input::-webkit-outer-spin-button {
   background-color: #fbeee6;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   flex-direction: row;
   padding: 5vh;
@@ -132,6 +135,8 @@ input::-webkit-outer-spin-button {
   .book-list {
     grid-template-columns: auto;
     gap: 5vh;
+    width: max-content;
+    overflow: hidden;
     margin: 13vh auto;
   }
   .book-item-img img {
@@ -147,13 +152,25 @@ input::-webkit-outer-spin-button {
     margin: 5%;
   }
 }
-@media screen and (max-width: 662px) {
+@media screen and (max-width: 669px) {
+  .booklist-content {
+    margin-left: 0%;
+    margin-right: 5%;
+  }
+  .booklist {
+    width: max-content;
+    overflow: hidden;
+  }
   .book-item {
     width: 70vw;
+    padding: 5%;
+  }
+  .book-item-img {
+    padding: 1%;
   }
   .book-item-img img {
     margin: auto;
-    width: 170px;
+    width: 135px;
     height: 30vh;
   }
   .cart-button {

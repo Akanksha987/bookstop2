@@ -2,11 +2,9 @@
 import Navbar from "./Navbar";
 import "./css/App.css";
 // import CoverNotFound from "../images/cover_not_found.jpg";
-import { v4 as uuidv4 } from "uuid";
 const Cart = ({ cartItems }) => {
   // const [books, setBooks] = useState([]);
   const handleClick = () => {};
-  console.log(uuidv4());
   return (
     <div className="cart-div">
       <Navbar />
