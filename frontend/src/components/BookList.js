@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
@@ -9,25 +9,10 @@ const BookList = () => {
   const [searchText, setSearchText] = useState("");
   const [books, setBooks] = useState([]);
   const navigate = useNavigate();
-  const { user } = useAuth0();
+  // const { user } = useAuth0();
 
-  let values = {};
-  if (user) values = { given_name: user.name, email: user.email };
-  const handleClick = async (e) => {
-    e.preventDefault();
-    const response = await fetch(process.env.REACT_APP_CART, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(values),
-    });
-    const json = await response.json();
-    console.log(values);
-    if (response.ok) {
-      console.log(json);
-    } else {
-      console.log(json);
-    }
-  };
+  // let values = {};
+  // if (user) values = { given_name: user.name, email: user.email };
 
   useEffect(() => {
     fetch(process.env.REACT_APP_PRODUCT_API)
@@ -58,7 +43,7 @@ const BookList = () => {
           <form className="search-form" onSubmit={handleSubmit}>
             <div className="search-form-elem flex flex-sb">
               {/* Input field of search bar */}
-              
+
               <input
                 type="text"
                 value={searchText}
@@ -98,9 +83,10 @@ const BookList = () => {
                         <span className="text-capitalize fw-7">Author: </span>
                         <span>{filtered.author}</span>
                       </div>
-                      <button onClick={handleClick} className="cart-button">
-                        Add to Cart
-                      </button>
+                      <div className="book-item-info-item author fs-15">
+                        <span className="text-capitalize fw-7">Author: </span>
+                        <span>{filtered.contact}</span>
+                      </div>
                     </div>
                   </div>
                 </li>

@@ -18,11 +18,18 @@ router.post("/cart", async (req, res) => {
 });
 router.put("/cart", async (req, res) => {
   try {
-    
+    const cart = await Cart.create({
+      email,
+      userCart,
+    });
+    console.log(req.body);
+    await cart.save();
+    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json(error);
   }
 });
+
 
 router.get("/cart", async (req, res) => {
   try {
