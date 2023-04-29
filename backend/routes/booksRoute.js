@@ -41,20 +41,28 @@ router.get("/product", async (req, res) => {
   }
 });
 
+router.get("/product/bookname/:bookname", async (req, res) => {
+  try {
+    const bookName = req.params.bookname;
+    const books = await Book.find({
+      bookname: { bookName },
+    });
+    res.json(books);
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
 router.get("/product/:id", async (req, res) => {
   const { id } = req.params;
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such category!, Sorry :(" });
+    return res.status(404).json({ error: "Invalid id parameter" });
   }
-
-  const products = await Book.findById(id);
-
-  if (!products) {
-    return res.status(404).json({ error: "No such category, Sorry :(" });
+  const product = await Book.findById(id);
+  if (!product) {
+    return res.status(404).json({ error: "No book found with that id" });
   }
-
-  res.status(200).json(products);
+  res.status(200).json(product);
 });
 
 module.exports = router;

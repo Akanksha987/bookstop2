@@ -67,11 +67,11 @@ const Navbar = () => {
                 Books
               </button>
             </Link>
-            <Link to="/cart">
+            {/* <Link to="/cart">
               <button onClick={handleClick} className="navigate-around-buttons">
                 Cart
               </button>
-            </Link>
+            </Link> */}
             <Link to="/sell">
               <button className="navigate-around-buttons">Add Book</button>
             </Link>
