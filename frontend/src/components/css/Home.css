@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .about {
   padding: 3rem 0;
@@ -11,10 +11,13 @@
   margin-top: 10rem;
   margin-left: 10rem;
 }
+h2 {
+  padding: 3%;
+}
 .about-content {
   display: flex;
   flex-direction: row;
-  margin: 5%;
+  margin: 2%;
 }
 .about-img img {
   width: 600px;

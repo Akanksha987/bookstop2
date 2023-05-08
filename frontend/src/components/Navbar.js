@@ -13,8 +13,8 @@ const Navbar = () => {
   const handleClick = (e) => {
     let buttons = document.getElementsByClassName("buttons");
     for (let i = 0; i < buttons.length; i++) {
-      if (buttons[i].hasAttribute("id", "active")) {
-        buttons[i].removeAttribute("id", "active");
+      if (buttons[i].getAttribute("id") === "active") {
+        buttons[i].removeAttribute("id");
       }
     }
     e.target.setAttribute("id", "active");
@@ -67,13 +67,15 @@ const Navbar = () => {
                 Books
               </button>
             </Link>
-            {/* <Link to="/cart">
+            <Link to="/cart">
               <button onClick={handleClick} className="navigate-around-buttons">
                 Cart
               </button>
-            </Link> */}
+            </Link>
             <Link to="/sell">
-              <button className="navigate-around-buttons">Add Book</button>
+              <button className="navigate-around-buttons" onClick={handleClick}>
+                Add Book
+              </button>
             </Link>
             {isAuthenticated ? (
               <>
