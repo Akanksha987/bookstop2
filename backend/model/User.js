@@ -1,27 +1,28 @@
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   email: {
-    type: "String",
+    type: String,
   },
-  userCart: [
-    {
-      id: {
-        type: "String",
+  userCart: {
+    type: [
+      {
+        bookname: {
+          type: String,
+        },
+        author: {
+          type: String,
+        },
+        contact: {
+          type: Number,
+        },
+        image: {
+          type: String,
+        },
       },
-      bookname: {
-        type: "String",
-      },
-      author: {
-        type: "String",
-      },
-      contact: {
-        type: "String",
-      },
-      image: {
-        type: "String",
-      },
-    },
-  ],
+    ],
+    default: [],
+  },
 });
+
 const User = mongoose.model("User", userSchema);
 module.exports = User;

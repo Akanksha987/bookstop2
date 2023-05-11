@@ -46,6 +46,7 @@
 
 .navigate-around-buttons {
   width: 8vw;
+  height: 4.5rem;
   font-size: large;
   margin-top: 50pt;
   border-radius: 20vh;
@@ -65,11 +66,7 @@
 }
 #image-div {
   width: 80%;
-  margin-left: 3%;
-}
-.buttons {
-  width: 8vw;
-  height: 5.5vh;
+  margin-left: 16%;
 }
 
 /* Responsive Styling */
