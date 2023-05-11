@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/Navbar.css";
 import logoImg from "../images/B.png";
@@ -9,16 +9,30 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [arrayLength, setArrayLength] = useState(0);
+  const { user } = useAuth0();
+  const apiUrl = process.env.REACT_APP_CART;
+  let values = {};
+  if (user) values = { email: user.email };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userEmail = values.email;
+      const response = await fetch(`${apiUrl}/${userEmail}`);
+      const data = await response.json();
+      setCart(data.userCart);
+      setArrayLength(data.userCart.length);
+    };
+    fetchData();
+  }, [values]);
+
+  useEffect(() => {
+    setArrayLength(cart.length);
+  }, [cart]);
+
   const handleNavbar = () => setToggleMenu(!toggleMenu);
-  const handleClick = (e) => {
-    let buttons = document.getElementsByClassName("buttons");
-    for (let i = 0; i < buttons.length; i++) {
-      if (buttons[i].getAttribute("id") === "active") {
-        buttons[i].removeAttribute("id");
-      }
-    }
-    e.target.setAttribute("id", "active");
-  };
+
   return (
     // Main divison of navabar
     <nav className="navbar_main" id="navbar">
@@ -54,28 +68,30 @@ const Navbar = () => {
         >
           <div className="floating-nav">
             <Link to="/home">
-              <button
-                id="active"
-                onClick={handleClick}
-                className="navigate-around-buttons"
-              >
-                Home
-              </button>
+              <button className="navigate-around-buttons">Home</button>
             </Link>
             <Link to="/book">
-              <button onClick={handleClick} className="navigate-around-buttons">
-                Books
-              </button>
+              <button className="navigate-around-buttons">Books</button>
             </Link>
             <Link to="/cart">
-              <button onClick={handleClick} className="navigate-around-buttons">
+              <button className="navigate-around-buttons">
                 Cart
+                <span
+                  style={{
+                    backgroundColor: "#eb8484",
+                    borderRadius: "50%",
+                    width: "100px",
+                    height: "100px",
+                    marginLeft: "5%",
+                    padding: "0 5% ",
+                  }}
+                >
+                  {arrayLength}
+                </span>
               </button>
             </Link>
             <Link to="/sell">
-              <button className="navigate-around-buttons" onClick={handleClick}>
-                Add Book
-              </button>
+              <button className="navigate-around-buttons">Add Book</button>
             </Link>
             {isAuthenticated ? (
               <>

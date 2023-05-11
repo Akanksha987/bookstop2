@@ -2,30 +2,23 @@
 .book-details {
   padding: 0 0;
   background-color: #fbeee6;
+  height: 100%;
 }
 .booklist-content {
-  /* width: 100%; */
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
   justify-content: space-evenly;
-  overflow-x: hidden;
-  /* overflow: hidden; */
+  margin-top: 5%;
+  margin-left: 7%;
+  padding-bottom: 7%;
 }
-/* .booklist-content.grid #main-content {
-  height: 75vh;
-  width: 25vw;
-  margin-bottom: 17%;
-} */
 .book-list {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 25vh;
-  margin: 13vh auto;
+  gap: 17vh;
 }
-#main-content {
-  margin-left: 13vh;
-}
+
 /* Scroll bar styling */
 
 ::-webkit-scrollbar {
@@ -39,16 +32,9 @@
   background: #fbeee6;
   border-radius: 10px;
 }
-
-#indivisual-book {
-  border: solid black 2px;
-}
 .book-item {
   margin-top: 5%;
-  display: flex;
-  justify-content: space-evenly;
-  height: 100%;
-  border-radius: 4px;
+  border-radius: 7px;
   width: 19vw;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
 }
@@ -78,11 +64,6 @@
 .book-item-info-item:not(.book-item-info-item.title) span:last-child {
   opacity: 0.8;
 }
-.book-item-info-item.publish-year {
-  opacity: 0.6;
-  font-style: italic;
-  font-size: 14px;
-}
 
 /* Filter options CSS */
 
@@ -91,33 +72,12 @@ input::-webkit-outer-spin-button {
   display: none;
 }
 
-.cart-div {
-  background-color: #fbeee6;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-}
-
-.cart-button {
-  background-color: black;
-  color: white;
-  padding: 1.5vh;
-  border-radius: 10vh;
-  width: 10vw;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
 .filter-section {
   width: 100%;
   background-color: #fbeee6;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* position: fixed; */
   flex-direction: column;
   padding: 5vh;
 }
@@ -154,12 +114,8 @@ input {
     flex-direction: column;
     margin-left: 10%;
   }
-  #main-content {
-    height: 70vh;
-    width: 70vw;
-  }
   .book-item {
-    width: 40vw;
+    width: 50vw;
   }
   .book-item-img {
     width: 50vw;
@@ -171,14 +127,10 @@ input {
   }
   .book-list {
     grid-template-columns: auto;
-    gap: 5vh;
-    width: max-content;
-    overflow: hidden;
-    margin: 13vh auto;
+    gap: 7vh;
   }
   .book-item-img img {
     margin-left: 25%;
-    /* margin-left: auto; */
     width: 175px;
     height: 35vh;
     align-content: center;
@@ -190,14 +142,6 @@ input {
   }
 }
 @media screen and (max-width: 669px) {
-  .booklist-content {
-    margin-left: 0%;
-    margin-right: 5%;
-  }
-  .booklist {
-    width: max-content;
-    overflow: hidden;
-  }
   .book-item {
     width: 70vw;
     padding: 5%;

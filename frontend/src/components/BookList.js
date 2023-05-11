@@ -5,6 +5,7 @@ import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
 import { FaSearch } from "react-icons/fa";
+import Loader from "./Loader";
 
 const BookList = () => {
   const [searchText, setSearchText] = useState("");
@@ -12,7 +13,6 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
   const navigate = useNavigate();
   const { user, loginWithRedirect } = useAuth0();
-
   let values = {};
   if (user) values = { given_name: user.name, email: user.email };
 
@@ -34,6 +34,7 @@ const BookList = () => {
       ) {
         return book;
       }
+      return book;
     });
     setBooks(filteredBooks);
     navigate("/book");
@@ -43,7 +44,7 @@ const BookList = () => {
     e.preventDefault();
 
     if (!user) {
-      loginWithRedirect(); // Redirect to login page if user is not logged in
+      loginWithRedirect();
       return;
     }
 
@@ -57,7 +58,7 @@ const BookList = () => {
       },
     };
 
-    const response = await fetch("http://localhost:3004/api/cart", {
+    const response = await fetch(process.env.REACT_APP_CART, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
@@ -74,40 +75,37 @@ const BookList = () => {
       <div className="navbar">
         <Navbar />
       </div>
-      <div className="container">
-        <div className="filter-section">
-          {/* <h2>Search the book of your need...</h2> */}
-          {/* Search bar to search the name of the book */}
-          <form className="search-form" onSubmit={handleSubmit}>
-            <div className="search-form-elem flex flex-sb">
-              {/* Input field of search bar */}
-              <input
-                type="text"
-                value={searchText}
-                className="form-control"
-                placeholder="Search your book..."
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-              {/* Search icon button */}
-              <button
-                type="submit"
-                className="flex flex-c"
-                onClick={handleSubmit}
-              >
-                <FaSearch className="text-black" size={25} />
-              </button>
-            </div>
-          </form>
-        </div>
+      <div className="filter-section">
+        {/* Search bar to search the name of the book */}
+        <form className="search-form" onSubmit={handleSubmit}>
+          <div className="search-form-elem flex flex-sb">
+            {/* Input field of search bar */}
+            <input
+              type="text"
+              value={searchText}
+              className="form-control"
+              placeholder="Search your book..."
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            {/* Search icon button */}
+            <button
+              type="submit"
+              className="flex flex-c"
+              onClick={handleSubmit}
+            >
+              <FaSearch className="text-black" size={25} />
+            </button>
+          </div>
+        </form>
       </div>
-      {loading ? (
-        <div className="loader">
-          <p>Loading...</p>
-        </div>
-      ) : (
-        <div className="booklist-content grid">
-          {/* Indivisual Book element being displayed */}
-          <div id="main-content">
+      <div className="booklist-content grid">
+        {loading ? (
+          <div className="loader">
+            <Loader />
+          </div>
+        ) : (
+          <div className="booklist-content grid">
+            {/* Indivisual Book element being displayed */}
             {books.length > 0 && (
               <ul className="book-list">
                 {books.map((filtered) => (
@@ -125,14 +123,12 @@ const BookList = () => {
                           <span>{filtered.author}</span>
                         </div>
                         <div className="book-item-info-item author fs-15">
-                          {/* {user && ( */}
                           <button
                             id="explore"
                             onClick={(e) => handleClick(e, filtered)}
                           >
                             Add to Cart
                           </button>
-                          {/* )} */}
                         </div>
                       </div>
                     </div>
@@ -141,12 +137,9 @@ const BookList = () => {
               </ul>
             )}
           </div>
-        </div>
-      )}
-
-      <div>
-        <Footer />
+        )}
       </div>
+      <Footer />
     </section>
   );
 };

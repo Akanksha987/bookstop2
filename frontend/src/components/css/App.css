@@ -32,6 +32,15 @@ p {
   font-size: 1.5rem;
 }
 
+/* Loader function */
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
 /* Login Page styling */
 
 .login-div {
