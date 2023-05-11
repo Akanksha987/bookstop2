@@ -1,12 +1,18 @@
 import React from "react";
-import { ReactComponent as BookLoader } from "./book-loader.svg";
-import "./loader.css";
-
+import { Bars } from "react-loader-spinner";
 const Loader = () => {
   return (
     <>
       <div className="loader">
-        <BookLoader className="book-loader" />
+        <Bars
+          height="100"
+          width="200"
+          color="grey"
+          ariaLabel="bars-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
       </div>
     </>
   );
