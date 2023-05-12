@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import "./css/Sell.css";
 import { useNavigate } from "react-router-dom";
 const Sell = () => {
@@ -12,12 +11,12 @@ const Sell = () => {
     year: "",
     course: "",
     contact: "",
+    price: "",
     image: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(JSON.stringify(values));
     const response = await fetch(process.env.REACT_APP_PRODUCT_API, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -49,13 +48,11 @@ const Sell = () => {
     const file = e.target.files[0];
     setImage(URL.createObjectURL(file));
     const base64 = await convertTobase64(file);
-    console.log(base64);
     setValues({ ...values, image: base64 });
   };
 
   return (
     <div className="content">
-      <Navbar />
       <form onSubmit={handleSubmit}>
         <div className=" box black">
           <div className="fun">
@@ -111,6 +108,14 @@ const Sell = () => {
               onChange={(e) =>
                 setValues({ ...values, contact: e.target.value })
               }
+            />
+            <br />
+            <h3>Price</h3>
+            <input
+              type="number"
+              className="block"
+              name="price"
+              onChange={(e) => setValues({ ...values, price: e.target.value })}
             />
             <br />
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import "./css/Navbar.css";
 import logoImg from "../images/B.png";
 import books from "../images/cover.png";
@@ -10,7 +10,7 @@ const Navbar = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   const [toggleMenu, setToggleMenu] = useState(false);
   const [cart, setCart] = useState([]);
-  const [arrayLength, setArrayLength] = useState(0);
+  const [arrayLength, setArrayLength] = useState(cart.length);
   const { user } = useAuth0();
   const apiUrl = process.env.REACT_APP_CART;
   let values = {};
@@ -26,10 +26,7 @@ const Navbar = () => {
     };
     fetchData();
   }, [values]);
-
-  useEffect(() => {
-    setArrayLength(cart.length);
-  }, [cart]);
+ 
 
   const handleNavbar = () => setToggleMenu(!toggleMenu);
 
@@ -67,13 +64,13 @@ const Navbar = () => {
           }
         >
           <div className="floating-nav">
-            <Link to="/home">
+            <CustomLink to="/home">
               <button className="navigate-around-buttons">Home</button>
-            </Link>
-            <Link to="/book">
+            </CustomLink>
+            <CustomLink to="/book">
               <button className="navigate-around-buttons">Books</button>
-            </Link>
-            <Link to="/cart">
+            </CustomLink>
+            <CustomLink to="/cart">
               <button className="navigate-around-buttons">
                 Cart
                 <span
@@ -89,10 +86,10 @@ const Navbar = () => {
                   {arrayLength}
                 </span>
               </button>
-            </Link>
-            <Link to="/sell">
+            </CustomLink>
+            <CustomLink to="/sell">
               <button className="navigate-around-buttons">Add Book</button>
-            </Link>
+            </CustomLink>
             {isAuthenticated ? (
               <>
                 <button
@@ -122,4 +119,16 @@ const Navbar = () => {
   );
 };
 
+const CustomLink = ({ to, children, ...props }) => {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+
+  return (
+    <div className={isActive ? "active" : ""}>
+      <Link to={to} {...props}>
+        {children}
+      </Link>
+    </div>
+  );
+};
 export default Navbar;
