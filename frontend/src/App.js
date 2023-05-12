@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
@@ -19,9 +20,10 @@ function App() {
         }}
       >
         {/* routes for the pages */}
+        <Navbar />
         <Routes>
-          <Route path="*" element={<NotFound />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/sell" element={<Sell />} />

@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
 import Footer from "./footer";
 import "./css/Home.css";
 import aboutImg from "../images/6897212-removebg-preview.png";
@@ -10,9 +9,6 @@ const Home = () => {
   console.log(user);
   return (
     <div className="home-div">
-      {/* Inserting navbar file */}
-      <Navbar />
-
       {/* Division of tagline */}
       <div className="header-content flex flex-c text-center text-black">
         <p className="header-text">

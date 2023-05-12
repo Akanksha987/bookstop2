@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
 import "./css/Cart.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
 import emptyCart from "../images/EmptyCart.webp";
 import { CiCircleRemove } from "react-icons/ci";
+import Loader from "./Loader";
+
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
   const apiUrl = process.env.REACT_APP_CART;
   const { user } = useAuth0();
   let values = {};
@@ -18,7 +20,7 @@ const Cart = () => {
       .then((res) => res.json())
       .then((data) => {
         setCart(data.userCart);
-        console.log(data.userCart.length);
+        setLoading(false);
       });
   }, [values]);
 
@@ -47,13 +49,17 @@ const Cart = () => {
 
   return (
     <div className="cart-div">
-      <Navbar />
       <div className="cart-content">
-        {cart.length > 0 ? (
+        {loading ? (
+          <div className="loader">
+            {" "}
+            <Loader />
+          </div>
+        ) : cart.length > 0 ? (
           <ul>
             {cart.map((filtered) => {
               return (
-                <li key={filtered._id}>
+                <li key={filtered._id} className="cart-li">
                   <div className="cart-item">
                     <div className="cart-image">
                       <img src={filtered.image} alt="cover" />

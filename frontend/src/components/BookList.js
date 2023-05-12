@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Navbar from "./Navbar";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import "./css/BookList.css";
@@ -55,6 +54,7 @@ const BookList = () => {
         author: book.author,
         contact: book.contact,
         image: book.image,
+        price: book.price,
       },
     };
 
@@ -72,9 +72,7 @@ const BookList = () => {
   };
   return (
     <section className="booklist">
-      <div className="navbar">
-        <Navbar />
-      </div>
+      <div className="navbar"></div>
       <div className="filter-section">
         {/* Search bar to search the name of the book */}
         <form className="search-form" onSubmit={handleSubmit}>
