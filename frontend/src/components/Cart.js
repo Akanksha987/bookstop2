@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
 import emptyCart from "../images/EmptyCart.webp";
 import { CiCircleRemove } from "react-icons/ci";
+import { AiFillStar } from "react-icons/ai";
 import Loader from "./Loader";
 
 const Cart = () => {
@@ -52,7 +53,6 @@ const Cart = () => {
       <div className="cart-content">
         {loading ? (
           <div className="loader">
-            {" "}
             <Loader />
           </div>
         ) : cart.length > 0 ? (
@@ -76,10 +76,25 @@ const Cart = () => {
                         <span className="text-capitalize fw-7">Contact: </span>
                         <span>{filtered.contact}</span>
                       </div>
+                      <div className="cart-info fs-15">
+                        <span className="text-capitalize fw-7">Price: ₹</span>
+                        <span>{filtered.price}</span>
+                      </div>
+                      <div className="star">
+                        <span className="text-capitalize fw-6">
+                          {filtered.rating}
+                        </span>
+                        <span>
+                          <AiFillStar size={20} />
+                        </span>
+                      </div>
                     </div>
                     <div className="cart-remove">
                       {user && (
-                        <button onClick={() => handleClick(filtered._id)}>
+                        <button
+                          title="Remove"
+                          onClick={() => handleClick(filtered._id)}
+                        >
                           <CiCircleRemove id="cart-remove" size={40} />
                         </button>
                       )}

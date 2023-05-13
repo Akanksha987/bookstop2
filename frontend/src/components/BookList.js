@@ -55,9 +55,9 @@ const BookList = () => {
         contact: book.contact,
         image: book.image,
         price: book.price,
+        rating: book.rating,
       },
     };
-
     const response = await fetch(process.env.REACT_APP_CART, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -96,47 +96,45 @@ const BookList = () => {
           </div>
         </form>
       </div>
-      <div className="booklist-content grid">
-        {loading ? (
-          <div className="loader">
-            <Loader />
-          </div>
-        ) : (
-          <div className="booklist-content grid">
-            {/* Indivisual Book element being displayed */}
-            {books.length > 0 && (
-              <ul className="book-list">
-                {books.map((filtered) => (
-                  <li key={filtered.id}>
-                    <div className="book-item flex flex-column flex-sb">
-                      <div className="book-item-img">
-                        <img src={filtered.image} alt="cover" />
+      {loading ? (
+        <div className="loader">
+          <Loader />
+        </div>
+      ) : (
+        <div className="booklist-content grid">
+          {/* Indivisual Book element being displayed */}
+          {books.length > 0 && (
+            <ul className="book-list">
+              {books.map((filtered) => (
+                <li key={filtered.id}>
+                  <div className="book-item flex flex-column flex-sb">
+                    <div className="book-item-img">
+                      <img src={filtered.image} alt="cover" />
+                    </div>
+                    <div className="book-item-info text-center">
+                      <div className="book-item-info-item title fw-7 fs-18">
+                        <span>{filtered.bookname}</span>
                       </div>
-                      <div className="book-item-info text-center">
-                        <div className="book-item-info-item title fw-7 fs-18">
-                          <span>{filtered.bookname}</span>
-                        </div>
-                        <div className="book-item-info-item author fs-15">
-                          <span className="text-capitalize fw-7">Author: </span>
-                          <span>{filtered.author}</span>
-                        </div>
-                        <div className="book-item-info-item author fs-15">
-                          <button
-                            id="explore"
-                            onClick={(e) => handleClick(e, filtered)}
-                          >
-                            Add to Cart
-                          </button>
-                        </div>
+                      <div className="book-item-info-item author fs-15">
+                        <span className="text-capitalize fw-7">Author: </span>
+                        <span>{filtered.author}</span>
+                      </div>
+                      <div className="book-item-info-item author fs-15">
+                        <button
+                          id="explore"
+                          onClick={(e) => handleClick(e, filtered)}
+                        >
+                          Add to Cart
+                        </button>
                       </div>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
       <Footer />
     </section>
   );

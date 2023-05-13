@@ -12,6 +12,7 @@ const Sell = () => {
     course: "",
     contact: "",
     price: "",
+    rating: "",
     image: "",
   });
 
@@ -116,6 +117,14 @@ const Sell = () => {
               className="block"
               name="price"
               onChange={(e) => setValues({ ...values, price: e.target.value })}
+            />
+            <br />
+            <h3>Rate Your Book</h3>
+            <input
+              type="number"
+              className="block"
+              name="rating"
+              onChange={(e) => setValues({ ...values, rating: e.target.value })}
             />
             <br />
           </div>
