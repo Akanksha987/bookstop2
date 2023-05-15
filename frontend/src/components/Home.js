@@ -3,10 +3,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./footer";
 import "./css/Home.css";
 import aboutImg from "../images/6897212-removebg-preview.png";
-import { useAuth0 } from "@auth0/auth0-react";
 const Home = () => {
-  const { user } = useAuth0();
-  console.log(user);
   return (
     <div className="home-div">
       {/* Division of tagline */}
@@ -33,11 +30,9 @@ const Home = () => {
             selling of books.
           </p>
         </div>
-        <div>
-          <Footer />
-        </div>
       </div>
-      <Outlet />
+      {/* <Outlet /> */}
+      <Footer />
     </div>
   );
 };

@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
         image: {
           type: String,
         },
+        price: {
+          type: Number,
+        },
+        rating: {
+          type: Number,
+        },
       },
     ],
     default: [],

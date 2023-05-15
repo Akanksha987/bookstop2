@@ -6,8 +6,17 @@ const mongoose = require("mongoose");
 
 // Create
 router.post("/product", async (req, res) => {
-  const { bookname, author, edition, contact, year, course, image, price } =
-    req.body;
+  const {
+    bookname,
+    author,
+    edition,
+    contact,
+    year,
+    course,
+    image,
+    price,
+    rating,
+  } = req.body;
   try {
     let result = null;
     if (image) {
@@ -24,6 +33,7 @@ router.post("/product", async (req, res) => {
       year,
       course,
       price,
+      rating,
       image: result ? result.secure_url : "",
     });
 

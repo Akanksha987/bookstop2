@@ -16,8 +16,9 @@
   justify-content: space-evenly;
   border: solid black 2px;
   flex-direction: row;
-  height: 65vh;
+  height: 80%;
   margin: 0 10%;
+  padding: 5%;
 }
 
 .content {
