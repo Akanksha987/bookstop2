@@ -44,18 +44,24 @@ const footer = () => {
           </Link>
         </li>
         <li>
-          <Link className="a" to="/sell">
+          <Link className="a" to="/term">
             Terms & Conditions
           </Link>
         </li>
         <li>
-          <Link className="a">Ownership of Content</Link>
+          <Link className="a" to="/safety">
+            Safety Tips
+          </Link>
         </li>
         <li>
-          <Link className="a">Intellectual Property</Link>
+          <Link className="a" to="/intellectual">
+            Intellectual Property
+          </Link>
         </li>
         <li>
-          <Link className="a">Privacy Policy</Link>
+          <Link className="a" to="/policy">
+            Privacy Policy
+          </Link>
         </li>
       </ul>
       <p>©2023 BookStop | All Right Reserved</p>
