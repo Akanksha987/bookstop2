@@ -8,6 +8,10 @@ import Sell from "./components/Sell";
 import BookList from "./components/BookList";
 import { Auth0Provider } from "@auth0/auth0-react";
 import BookDetails from "./components/BookDetails";
+import Term from "./components/Term";
+import Policy from "./components/policy";
+import Safety from "./components/Safety";
+import Intellectual from "./components/Intellectual";
 
 function App() {
   return (
@@ -28,6 +32,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/sell" element={<Sell />} />
           <Route path="/book" element={<BookList />} />
+          <Route path="/term" element={<Term />} />
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/safety" element={<Safety />} />
+          <Route path="/intellectual" element={<Intellectual />} />
           <Route path="/book/:id" element={<BookDetails />} />
         </Routes>
       </Auth0Provider>

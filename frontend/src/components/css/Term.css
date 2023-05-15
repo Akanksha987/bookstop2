@@ -1,0 +1,38 @@
+/* Terms & Condition page and Safety page styling*/
+.term {
+  background-color: #fbeee6;
+  letter-spacing: 1px;
+  line-height: 2.9rem;
+}
+.intro {
+  padding: 2% 6%;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  line-height: 2.9rem;
+}
+h1 {
+  position: relative;
+  justify-content: left;
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 2%;
+  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+}
+ol {
+  margin-top: 1%;
+}
+.bold {
+  padding: 5%;
+  font-size: large;
+}
+.para {
+  letter-spacing: 1px;
+  line-height: 2.9rem;
+  font-size: 1.6rem;
+  padding: 0 6%;
+}
+.main-div {
+  margin: 3%;
+}
+/* Intellectual Property page styling */
