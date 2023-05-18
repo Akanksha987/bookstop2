@@ -19,7 +19,7 @@ const Cart = () => {
   console.log(user);
   useEffect(() => {
     const userEmail = values.email;
-    fetch(`${apiUrl}${userEmail}`)
+    fetch(`${apiUrl}/${userEmail}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data.userCart);
@@ -30,7 +30,7 @@ const Cart = () => {
   const handleClick = (id) => {
     const userEmail = values.email;
     if (userEmail) {
-      fetch(`${apiUrl}${userEmail}/${id}`, {
+      fetch(`${apiUrl}/${userEmail}/${id}`, {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
       })
