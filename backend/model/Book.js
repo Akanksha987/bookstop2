@@ -15,11 +15,11 @@ const bookSchema = new Schema({
     maxlength: 4,
     minlength: 4,
   },
-  contact: {
-    type: Number,
+  emailId: {
+    type: String,
     required: true,
-    minlength: 10,
-    maxlength: 10,
+    // minlength: 10,
+    // maxlength: 10,
   },
   year: {
     type: Number,

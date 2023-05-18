@@ -3,7 +3,7 @@ const router = express.Router();
 const Chat = require("../model/ChatModel");
 
 // Route for sending a chat message
-router.post("/", async (req, res) => {
+router.post("/send", async (req, res) => {
   try {
     const { sender, recipient, message } = req.body;
 
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
 });
 
 // Route for getting chat messages between two users
-router.get("/chat", async (req, res) => {
+router.get("/:recipient", async (req, res) => {
   try {
     const { sender, recipient } = req.query;
 

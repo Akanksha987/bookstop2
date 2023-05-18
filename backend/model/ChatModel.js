@@ -1,25 +1,12 @@
-// const mongoose = require("mongoose");
-// const ChatSchema = new mongoose.Schema(
-//   {
-//     members: {
-//       type: Array,
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
-// const ChatModel = mongoose.model("ChatModel", ChatSchema);
-// module.exports = ChatModel;
 const mongoose = require("mongoose");
 
 const chatSchema = new mongoose.Schema({
   sender: {
-    type: String, // Assuming the user identifier from Auth0 is a string
+    type: String,
     required: true,
   },
   recipient: {
-    type: String, // Assuming the user identifier from Auth0 is a string
+    type: String,
     required: true,
   },
   message: {

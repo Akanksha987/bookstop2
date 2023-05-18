@@ -56,7 +56,7 @@ const BookList = () => {
       userCart: {
         bookname: book.bookname,
         author: book.author,
-        contact: book.contact,
+        emailId: book.emailId,
         image: book.image,
         price: book.price,
         rating: book.rating,

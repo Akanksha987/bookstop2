@@ -19,7 +19,7 @@ const Cart = () => {
   console.log(user);
   useEffect(() => {
     const userEmail = values.email;
-    fetch(`${apiUrl}/${userEmail}`)
+    fetch(`${apiUrl}${userEmail}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data.userCart);
@@ -30,7 +30,7 @@ const Cart = () => {
   const handleClick = (id) => {
     const userEmail = values.email;
     if (userEmail) {
-      fetch(`${apiUrl}/${userEmail}/${id}`, {
+      fetch(`${apiUrl}${userEmail}/${id}`, {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
       })
@@ -52,8 +52,11 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  const handleChatClick = () => {
-    navigate("/chat"); // Redirect to the chat page
+  const handleChatClick = (filtered) => {
+    const userEmail = values.email;
+    const bookOwnerEmail = filtered.emailId;
+    console.log(bookOwnerEmail);
+    navigate("/chat", { state: { userEmail, bookOwnerEmail } });
   };
 
   return (
@@ -81,8 +84,10 @@ const Cart = () => {
                         <span>{filtered.author}</span>
                       </div>
                       <div className="cart-info fs-15">
-                        <span className="text-capitalize fw-7">Contact: </span>
-                        <span>{filtered.contact}</span>
+                        <span className="text-capitalize fw-7">
+                          OwnerEmail:{" "}
+                        </span>
+                        <span>{filtered.emailId}</span>
                       </div>
                       <div className="cart-info fs-15">
                         <span className="text-capitalize fw-7">Price: ₹</span>
@@ -106,7 +111,10 @@ const Cart = () => {
                           <CiCircleRemove id="cart-remove" size={40} />
                         </button>
                       )}
-                      <button className="chat-button" onClick={handleChatClick}>
+                      <button
+                        className="chat-button"
+                        onClick={() => handleChatClick(filtered)}
+                      >
                         Chat box
                       </button>
                     </div>
@@ -126,4 +134,5 @@ const Cart = () => {
     </div>
   );
 };
+
 export default Cart;

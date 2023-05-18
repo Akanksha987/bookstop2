@@ -6,7 +6,7 @@ const Chat = () => {
 
   useEffect(() => {
     // Connect to the server
-    const newSocket = io("http://localhost:3004"); // Replace with your server URL
+    const newSocket = io("http://localhost:3009");
     setSocket(newSocket);
 
     // Handle incoming chat messages
@@ -24,10 +24,14 @@ const Chat = () => {
     e.preventDefault();
     const messageInput = e.target.elements.message;
     const message = messageInput.value;
-    messageInput.value = "";
 
     // Send the message to the server
     socket.emit("chatMessage", message);
+
+    // Clear the input field
+    messageInput.value = "";
+
+    console.log(message);
   };
 
   return (
