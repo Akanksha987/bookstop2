@@ -12,6 +12,7 @@ import Term from "./components/Term";
 import Policy from "./components/policy";
 import Safety from "./components/Safety";
 import Intellectual from "./components/Intellectual";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/safety" element={<Safety />} />
           <Route path="/intellectual" element={<Intellectual />} />
           <Route path="/book/:id" element={<BookDetails />} />
+          <Route path="/chat" element={<Chat/>}/>
         </Routes>
       </Auth0Provider>
     </div>

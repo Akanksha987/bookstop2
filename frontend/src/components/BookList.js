@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ const BookList = () => {
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const navigate = useNavigate();
   const { user, loginWithRedirect } = useAuth0();
   let values = {};
@@ -21,21 +22,24 @@ const BookList = () => {
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
+        setFilteredBooks(data);
         setLoading(false);
       });
   }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const filteredBooks = books.filter((book) => {
-      if (
-        book.bookname.toLowerCase().includes(searchText.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchText.toLowerCase())
-      ) {
-        return book;
-      }
-      return book;
+    const filtered = books.filter((book) => {
+      const bookNameLower = book.bookname.toLowerCase();
+      const authorLower = book.author.toLowerCase();
+      const searchTextLower = searchText.toLowerCase();
+
+      return (
+        bookNameLower.includes(searchTextLower) ||
+        authorLower.includes(searchTextLower)
+      );
     });
-    setBooks(filteredBooks);
+    setFilteredBooks(filtered);
     navigate("/book");
   };
 
@@ -58,26 +62,31 @@ const BookList = () => {
         rating: book.rating,
       },
     };
-    const response = await fetch(process.env.REACT_APP_CART, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    const json = response.json();
-    if (response.ok) {
-      console.log(json);
-    } else {
-      console.log(json);
+
+    try {
+      const response = await fetch(process.env.REACT_APP_CART, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await response.json();
+
+      if (response.ok) {
+        console.log(json);
+      } else {
+        console.log(json);
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
   };
+
   return (
     <section className="booklist">
       <div className="navbar"></div>
       <div className="filter-section">
-        {/* Search bar to search the name of the book */}
         <form className="search-form" onSubmit={handleSubmit}>
           <div className="search-form-elem flex flex-sb">
-            {/* Input field of search bar */}
             <input
               type="text"
               value={searchText}
@@ -85,7 +94,6 @@ const BookList = () => {
               placeholder="Search your book..."
               onChange={(e) => setSearchText(e.target.value)}
             />
-            {/* Search icon button */}
             <button
               type="submit"
               className="flex flex-c"
@@ -102,10 +110,9 @@ const BookList = () => {
         </div>
       ) : (
         <div className="booklist-content grid">
-          {/* Indivisual Book element being displayed */}
-          {books.length > 0 && (
+          {filteredBooks.length > 0 && (
             <ul className="book-list">
-              {books.map((filtered) => (
+              {filteredBooks.map((filtered) => (
                 <li key={filtered.id}>
                   <div className="book-item flex flex-column flex-sb">
                     <div className="book-item-img">
@@ -139,4 +146,5 @@ const BookList = () => {
     </section>
   );
 };
+
 export default BookList;

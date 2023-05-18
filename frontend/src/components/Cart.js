@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Cart.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
@@ -15,6 +16,7 @@ const Cart = () => {
   let values = {};
 
   if (user) values = { email: user.email };
+  console.log(user);
   useEffect(() => {
     const userEmail = values.email;
     fetch(`${apiUrl}/${userEmail}`)
@@ -46,6 +48,12 @@ const Cart = () => {
           }
         });
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleChatClick = () => {
+    navigate("/chat"); // Redirect to the chat page
   };
 
   return (
@@ -98,6 +106,9 @@ const Cart = () => {
                           <CiCircleRemove id="cart-remove" size={40} />
                         </button>
                       )}
+                      <button className="chat-button" onClick={handleChatClick}>
+                        Chat box
+                      </button>
                     </div>
                   </div>
                 </li>
