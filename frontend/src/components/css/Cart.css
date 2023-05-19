@@ -49,3 +49,9 @@ h1 {
   margin-top: 2%;
   margin-left: 4%;
 }
+.chat-button {
+  padding: 4%;
+  background-color: rgb(210, 113, 160);
+  border-radius: 500px;
+  margin: 5%;
+}

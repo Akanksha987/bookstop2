@@ -10,7 +10,7 @@ const Sell = () => {
     edition: "",
     year: "",
     course: "",
-    contact: "",
+    emailId: "",
     price: "",
     rating: "",
     image: "",
@@ -101,13 +101,13 @@ const Sell = () => {
               onChange={(e) => setValues({ ...values, course: e.target.value })}
             />
             <br />
-            <h3>Contact Number</h3>
+            <h3>OwnerEmail</h3>
             <input
-              type="number"
+              type="email"
               className="block"
-              name="contact"
+              name="emailId"
               onChange={(e) =>
-                setValues({ ...values, contact: e.target.value })
+                setValues({ ...values, emailId: e.target.value })
               }
             />
             <br />

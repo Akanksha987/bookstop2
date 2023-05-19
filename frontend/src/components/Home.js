@@ -31,7 +31,7 @@ const Home = () => {
           </p>
         </div>
       </div>
-      {/* <Outlet /> */}
+      <Outlet />
       <Footer />
     </div>
   );

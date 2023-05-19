@@ -12,8 +12,8 @@ const userSchema = new mongoose.Schema({
         author: {
           type: String,
         },
-        contact: {
-          type: Number,
+        emailId: {
+          type:String,
         },
         image: {
           type: String,
