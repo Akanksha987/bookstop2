@@ -26,7 +26,6 @@ const Navbar = () => {
     };
     fetchData();
   }, [values]);
- 
 
   const handleNavbar = () => setToggleMenu(!toggleMenu);
 
@@ -92,17 +91,14 @@ const Navbar = () => {
             </CustomLink>
             {isAuthenticated ? (
               <>
-                <button
-                  onClick={logout}
-                  className="navigate-around-buttons buttons"
-                >
+                <button onClick={logout} className="navigate-around-buttons">
                   Log Out
                 </button>
               </>
             ) : (
               <button
                 onClick={loginWithRedirect}
-                className="navigate-around-buttons buttons"
+                className="navigate-around-buttons  "
               >
                 Sign up
               </button>

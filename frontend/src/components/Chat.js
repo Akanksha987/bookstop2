@@ -1,51 +1,51 @@
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import "./css/Chat.css";
+import Conversation from "./Conversation";
+import ChatBox from "./ChatBox";
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
-  const [socket, setSocket] = useState(null);
+  const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
+  const { user } = useAuth0();
+  let values = {};
 
+  if (user) values = { email: user.email };
+  console.log(values.email);
   useEffect(() => {
-    // Connect to the server
-    const newSocket = io("http://localhost:3009");
-    setSocket(newSocket);
-
-    // Handle incoming chat messages
-    newSocket.on("chatMessage", (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    return () => {
-      // Clean up the socket connection on component unmount
-      newSocket.disconnect();
-    };
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const messageInput = e.target.elements.message;
-    const message = messageInput.value;
-
-    // Send the message to the server
-    socket.emit("chatMessage", message);
-
-    // Clear the input field
-    messageInput.value = "";
-
-    console.log(message);
-  };
+    const userEmail = values.email;
+    fetch(`http://localhost:3009/chat/${userEmail}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setChats(data);
+        console.log(data);
+      });
+  }, [user]);
 
   return (
-    <div>
-      <h1>Socket.IO Chat</h1>
-      <div>
-        {messages.map((message, index) => (
-          <p key={index}>{message}</p>
-        ))}
+    <div className="Chat">
+      <div className="Left-side-chat">
+        <div className="Chat-container">
+          <h2>Chat</h2>
+          <div className="Chat-list">
+            {chats.map((chat) => (
+              <div
+                onClick={() => {
+                  setCurrentChat(chat);
+                }}
+              >
+                <Conversation
+                  data={chat}
+                  currentUserId={user.email}
+                  // online={checkOnlineStatus(chat)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="message" placeholder="Enter message" />
-        <button type="submit">Send</button>
-      </form>
+      <div className="Right-side-chat">
+        <ChatBox chat={currentChat} currentUser={values.email} />
+      </div>
     </div>
   );
 };

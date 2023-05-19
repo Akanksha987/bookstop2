@@ -7,8 +7,9 @@ import emptyCart from "../images/EmptyCart.webp";
 import { CiCircleRemove } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
 import Loader from "./Loader";
+import Chat from "./Chat";
 
-const Cart = () => {
+const Cart = (bookOwnerEmail) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiUrl = process.env.REACT_APP_CART;
@@ -16,7 +17,6 @@ const Cart = () => {
   let values = {};
 
   if (user) values = { email: user.email };
-  console.log(user);
   useEffect(() => {
     const userEmail = values.email;
     fetch(`${apiUrl}/${userEmail}`)
@@ -131,6 +131,7 @@ const Cart = () => {
         )}
       </div>
       <Footer />
+      {cart.length > 0 && <Chat bookOwnerEmail={bookOwnerEmail} />}
     </div>
   );
 };

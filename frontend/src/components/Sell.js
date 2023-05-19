@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./css/Sell.css";
 import { useNavigate } from "react-router-dom";
+import Footer from "./footer";
 const Sell = () => {
   const [image, setImage] = useState("");
   const history = useNavigate();
@@ -148,6 +149,7 @@ const Sell = () => {
         </div>
         <button className="submit_button">Submit</button>
       </form>
+      <Footer />
     </div>
   );
 };
