@@ -31,8 +31,8 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <Outlet />
       <Footer />
+      <Outlet />
     </div>
   );
 };

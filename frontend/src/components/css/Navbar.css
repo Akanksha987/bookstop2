@@ -2,16 +2,14 @@
 .navbar_main {
   background-color: #fbeee6;
 }
-
-.navbar-content {
-  display: flex;
-  width: 100%;
+.navbar-brand {
+  margin-right: 0;
 }
 
 /* Logo Styling */
 .logo {
   height: 50%;
-  width: 80%;
+  width: 60%;
 }
 
 /* Toogle Styling */
@@ -38,19 +36,18 @@
 
 /* Navbar List styling */
 .floating-nav {
-  height: 20vh;
-  width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin: 0;
 }
 
 .navigate-around-buttons {
   width: 8vw;
   height: 4.5rem;
   font-size: large;
-  margin-top: 50pt;
+  margin-top: 10vh;
   border-radius: 20vh;
-  padding: 5px;
+  padding: 3px;
   border: 2px solid black;
 }
 .navigate-around-buttons:hover {

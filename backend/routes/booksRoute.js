@@ -65,6 +65,17 @@ router.get("/product/bookname/:bookname", async (req, res) => {
   }
 });
 
+router.get("/product/email/:emailId", async (req, res) => {
+  try {
+    const emailId = req.params.emailId;
+    const products = await Book.find({ emailId: emailId });
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
 router.get("/product/:id", async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
