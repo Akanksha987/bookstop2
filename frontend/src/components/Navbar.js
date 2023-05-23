@@ -86,7 +86,7 @@ const Navbar = () => {
                 </span>
               </button>
             </CustomLink>
-            <CustomLink to="/sell">
+            <CustomLink to="/sell" className="link">
               <button className="navigate-around-buttons">Add Book</button>
             </CustomLink>
             {isAuthenticated ? (
@@ -98,7 +98,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={loginWithRedirect}
-                className="navigate-around-buttons  "
+                className="navigate-around-buttons"
               >
                 Sign up
               </button>
