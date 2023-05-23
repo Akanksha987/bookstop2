@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import "./css/Cart.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
 import emptyCart from "../images/EmptyCart.webp";
 import { CiCircleRemove } from "react-icons/ci";
-import { AiFillStar } from "react-icons/ai";
+import Rating from "@mui/material/Rating";
 import Loader from "./Loader";
 import Chat from "./Chat";
 
-const Cart = (bookOwnerEmail) => {
+const Cart = () => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiUrl = process.env.REACT_APP_CART;
@@ -50,15 +49,6 @@ const Cart = (bookOwnerEmail) => {
     }
   };
 
-  const navigate = useNavigate();
-
-  const handleChatClick = (filtered) => {
-    const userEmail = values.email;
-    const bookOwnerEmail = filtered.emailId;
-    console.log(bookOwnerEmail);
-    navigate("/chat", { state: { userEmail, bookOwnerEmail } });
-  };
-
   return (
     <div className="cart-div">
       <div className="cart-content">
@@ -76,7 +66,7 @@ const Cart = (bookOwnerEmail) => {
                       <img src={filtered.image} alt="cover" />
                     </div>
                     <div className="cart-text">
-                      <div className="cart-info  fw-7 fs-18">
+                      <div className="cart-info fw-7 fs-18">
                         <span>{filtered.bookname}</span>
                       </div>
                       <div className="cart-info fs-15">
@@ -84,22 +74,21 @@ const Cart = (bookOwnerEmail) => {
                         <span>{filtered.author}</span>
                       </div>
                       <div className="cart-info fs-15">
-                        <span className="text-capitalize fw-7">
-                          OwnerEmail:{" "}
-                        </span>
-                        <span>{filtered.emailId}</span>
+                        <span className="text-capitalize fw-7">Contact: </span>
+                        <span>{filtered.contact}</span>
                       </div>
                       <div className="cart-info fs-15">
                         <span className="text-capitalize fw-7">Price: ₹</span>
                         <span>{filtered.price}</span>
                       </div>
                       <div className="star">
-                        <span className="text-capitalize fw-6">
-                          {filtered.rating}
-                        </span>
-                        <span>
-                          <AiFillStar size={20} />
-                        </span>
+                        <Rating
+                          name="read-only"
+                          value={filtered.rating}
+                          precision={0.5}
+                          readOnly
+                          style={{ fontSize: 45 }}
+                        />
                       </div>
                     </div>
                     <div className="cart-remove">
@@ -111,12 +100,7 @@ const Cart = (bookOwnerEmail) => {
                           <CiCircleRemove id="cart-remove" size={40} />
                         </button>
                       )}
-                      <button
-                        className="chat-button"
-                        onClick={() => handleChatClick(filtered)}
-                      >
-                        Chat box
-                      </button>
+                      <Chat contact={filtered.contact} />
                     </div>
                   </div>
                 </li>
@@ -131,7 +115,6 @@ const Cart = (bookOwnerEmail) => {
         )}
       </div>
       <Footer />
-      {cart.length > 0 && <Chat bookOwnerEmail={bookOwnerEmail} />}
     </div>
   );
 };

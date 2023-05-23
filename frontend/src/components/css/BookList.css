@@ -72,11 +72,8 @@ input::-webkit-outer-spin-button {
 }
 
 .filter-section {
-  width: 100%;
-  background-color: #fbeee6;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-direction: column;
   padding: 5vh;
 }

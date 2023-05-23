@@ -1,51 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import "./css/Chat.css";
-import Conversation from "./Conversation";
-import ChatBox from "./ChatBox";
-const Chat = () => {
-  const [chats, setChats] = useState([]);
-  const [currentChat, setCurrentChat] = useState(null);
-  const { user } = useAuth0();
-  let values = {};
+import React from "react";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
-  if (user) values = { email: user.email };
-  console.log(values.email);
-  useEffect(() => {
-    const userEmail = values.email;
-    fetch(`http://localhost:3009/chat/${userEmail}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setChats(data);
-        console.log(data);
-      });
-  }, [user]);
+const Chat = ({ contact }) => {
+  const handleChatClick = () => {
+    const message = "Hello, I'm interested in purchasing your book.";
+    const whatsappURL = `https://wa.me/${encodeURIComponent(
+      "+" + contact
+    )}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+  };
 
   return (
-    <div className="Chat">
-      <div className="Left-side-chat">
-        <div className="Chat-container">
-          <h2>Chat</h2>
-          <div className="Chat-list">
-            {chats.map((chat) => (
-              <div
-                onClick={() => {
-                  setCurrentChat(chat);
-                }}
-              >
-                <Conversation
-                  data={chat}
-                  currentUserId={user.email}
-                  // online={checkOnlineStatus(chat)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="Right-side-chat">
-        <ChatBox chat={currentChat} currentUser={values.email} />
-      </div>
+    <div className="chat-container">
+      <button onClick={handleChatClick}>
+        <WhatsAppIcon style={{ fontSize: 50 }} />
+      </button>
     </div>
   );
 };
