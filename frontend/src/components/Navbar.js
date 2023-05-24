@@ -27,10 +27,16 @@ const Navbar = () => {
     fetchData();
   }, [values]);
 
-  const handleNavbar = () => setToggleMenu(!toggleMenu);
+  const handleNavbar = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
+  const closeNavbar = () => {
+    setToggleMenu(false);
+  };
 
   return (
-    // Main divison of navabar
+    // Main division of the navbar
     <nav className="navbar_main" id="navbar">
       <div className=" navbar-content flex">
         <div className="brand-and-toggler flex flex-sb">
@@ -39,7 +45,7 @@ const Navbar = () => {
             <img src={logoImg} alt="site logo" className="logo" />
           </Link>
 
-          {/* hamburger button for the scroll down menu - Mobile Version */}
+          {/* hamburger button for the scroll-down menu - Mobile Version */}
           <button
             type="button"
             className="navbar-toggler-btn"
@@ -54,13 +60,14 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Division for the scroll menu displayed after clicking hanburger icon - Mobile Version */}
+        {/* Division for the scroll menu displayed after clicking the hamburger icon - Mobile Version */}
         <div
           className={
             toggleMenu
               ? "navbar-collapse show-navbar-collapse"
               : "navbar-collapse"
           }
+          onClick={closeNavbar}
         >
           <div className="floating-nav">
             <CustomLink to="/home">
@@ -105,7 +112,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Dision for image of books */}
+          {/* Division for image of books */}
           <div>
             <img id="image-div" src={books} alt="" />
           </div>

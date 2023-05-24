@@ -104,7 +104,10 @@ input {
 .search-form-elem .form-control::placeholder {
   opacity: 0.9;
 }
-
+/* No result found*/
+.no-results {
+  margin-left: 35%;
+}
 @media screen and (max-width: 992px) {
   .booklist-content {
     flex-direction: column;

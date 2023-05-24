@@ -18,12 +18,16 @@ const Cart = () => {
   if (user) values = { email: user.email };
   useEffect(() => {
     const userEmail = values.email;
-    fetch(`${apiUrl}/${userEmail}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCart(data.userCart);
-        setLoading(false);
-      });
+    if (userEmail) {
+      fetch(`${apiUrl}/${userEmail}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCart(data.userCart);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
   }, [values]);
 
   const handleClick = (id) => {
@@ -56,62 +60,81 @@ const Cart = () => {
           <div className="loader">
             <Loader />
           </div>
-        ) : cart.length > 0 ? (
-          <ul>
-            {cart.map((filtered) => {
-              return (
-                <li key={filtered._id} className="cart-li">
-                  <div className="cart-item">
-                    <div className="cart-image">
-                      <img src={filtered.image} alt="cover" />
-                    </div>
-                    <div className="cart-text">
-                      <div className="cart-info fw-7 fs-18">
-                        <span>{filtered.bookname}</span>
-                      </div>
-                      <div className="cart-info fs-15">
-                        <span className="text-capitalize fw-7">Author: </span>
-                        <span>{filtered.author}</span>
-                      </div>
-                      <div className="cart-info fs-15">
-                        <span className="text-capitalize fw-7">Contact: </span>
-                        <span>{filtered.contact}</span>
-                      </div>
-                      <div className="cart-info fs-15">
-                        <span className="text-capitalize fw-7">Price: ₹</span>
-                        <span>{filtered.price}</span>
-                      </div>
-                      <div className="star">
-                        <Rating
-                          name="read-only"
-                          value={filtered.rating}
-                          precision={0.5}
-                          readOnly
-                          style={{ fontSize: 45 }}
-                        />
-                      </div>
-                    </div>
-                    <div className="cart-remove">
-                      {user && (
-                        <button
-                          title="Remove"
-                          onClick={() => handleClick(filtered._id)}
-                        >
-                          <CiCircleRemove id="cart-remove" size={40} />
-                        </button>
-                      )}
-                      <Chat contact={filtered.contact} />
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
         ) : (
-          <div className="cart">
-            <img src={emptyCart} alt="" />
-            <h1>Your Cart Is Empty.</h1>
-          </div>
+          <>
+            {user ? (
+              <>
+                {cart.length > 0 ? (
+                  <ul>
+                    {cart.map((filtered) => {
+                      return (
+                        <li key={filtered._id} className="cart-li">
+                          <div className="cart-item">
+                            <div className="cart-image">
+                              <img src={filtered.image} alt="cover" />
+                            </div>
+                            <div className="cart-text">
+                              <div className="cart-info fw-7 fs-18">
+                                <span>{filtered.bookname}</span>
+                              </div>
+                              <div className="cart-info fs-15">
+                                <span className="text-capitalize fw-7">
+                                  Author:{" "}
+                                </span>
+                                <span>{filtered.author}</span>
+                              </div>
+                              <div className="cart-info fs-15">
+                                <span className="text-capitalize fw-7">
+                                  Contact:{" "}
+                                </span>
+                                <span>{filtered.contact}</span>
+                              </div>
+                              <div className="cart-info fs-15">
+                                <span className="text-capitalize fw-7">
+                                  Price: ₹
+                                </span>
+                                <span>{filtered.price}</span>
+                              </div>
+                              <div className="star">
+                                <Rating
+                                  name="read-only"
+                                  value={filtered.rating}
+                                  precision={0.5}
+                                  readOnly
+                                  style={{ fontSize: 45 }}
+                                />
+                              </div>
+                              <Chat contact={filtered.contact} />
+                            </div>
+                            <div className="cart-remove">
+                              {user && (
+                                <button
+                                  title="Remove"
+                                  onClick={() => handleClick(filtered._id)}
+                                >
+                                  <CiCircleRemove id="cart-remove" size={40} />
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <div className="cart">
+                    <img src={emptyCart} alt="" id="empty-img" />
+                    <span className="empty-text">Your Cart Is Empty.</span>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="cart">
+                <img src={emptyCart} alt="" id="empty-img" />
+                <span className="empty-text">Your Cart Is Empty.</span>
+              </div>
+            )}
+          </>
         )}
       </div>
       <Footer />
