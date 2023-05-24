@@ -9,7 +9,7 @@ router.post("/cart", async (req, res) => {
     if (cart) {
       cart.userCart.push(userCart);
     } else {
-      cart = new Cart({ email, userCart: [userCart] });
+      cart = new User({ email, userCart: [userCart] });
     }
     await cart.save();
     res.status(200).json(cart);
@@ -35,7 +35,7 @@ router.put("/cart", async (req, res) => {
     if (cart) {
       cart.userCart.push(userCart);
     } else {
-      cart = new Cart({ email, userCart: [userCart] });
+      cart = new User({ email, userCart: [userCart] });
     }
     await cart.save();
     res.status(200).json(cart);

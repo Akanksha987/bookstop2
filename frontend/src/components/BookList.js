@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
+import result from "../images/noResult.png";
 import "./css/BookList.css";
 import { FaSearch } from "react-icons/fa";
 import Loader from "./Loader";
@@ -110,7 +111,7 @@ const BookList = () => {
         </div>
       ) : (
         <div className="booklist-content grid">
-          {filteredBooks.length > 0 && (
+          {filteredBooks.length > 0 ? (
             <ul className="book-list">
               {filteredBooks.map((filtered) => (
                 <li key={filtered.id}>
@@ -127,18 +128,31 @@ const BookList = () => {
                         <span>{filtered.author}</span>
                       </div>
                       <div className="book-item-info-item author fs-15">
-                        <button
-                          id="explore"
-                          onClick={(e) => handleClick(e, filtered)}
-                        >
-                          Add to Cart
-                        </button>
+                        {user ? (
+                          <button
+                            id="explore"
+                            onClick={(e) => handleClick(e, filtered)}
+                          >
+                            Add to Cart
+                          </button>
+                        ) : (
+                          <button
+                            id="explore"
+                            onClick={(e) => handleClick(e, filtered)}
+                          >
+                            Login to Add to cart
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
                 </li>
               ))}
             </ul>
+          ) : (
+            <div className="no-results">
+              <img src={result} />
+            </div>
           )}
         </div>
       )}

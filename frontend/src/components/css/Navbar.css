@@ -100,12 +100,12 @@
   }
   .navigate-around-buttons {
     color: #fff;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   }
   .floating-nav {
     display: flex;
     flex-direction: column;
-    margin-top: 45%;
-    margin-left: 5%;
   }
   .brand-and-toggler {
     width: 100%;
